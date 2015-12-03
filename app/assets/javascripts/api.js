@@ -4,7 +4,7 @@ console.log(value);
 // Calls Giphy api on the header name and displays four results.
 $(function(){
   var giphy_promise = $.ajax({
-    url:'http://api.giphy.com/v1/gifs/search',
+    url:'https://api.giphy.com/v1/gifs/search',
     method: "GET",
     data: {
       q: value,
