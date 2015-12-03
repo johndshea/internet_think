@@ -1,0 +1,25 @@
+<h1>Feed your mind, if you dare</h1>
+
+<div id="curiosities">
+  <% @curiosities.each do |curiosity| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= link_to curiosity.title, curiosity_path(curiosity) %>
+      </div>
+      <div class="panel-body">
+        <%= curiosity.description %>
+        <p>
+          Tags:
+          <% curiosity.tags.each do |tag| %>
+            <%= link_to tag.name, tag_path(tag) %>
+          <% end %>
+        </p>
+      </div>
+      <!-- <% if curiosity.image.exists? %>
+        <div class="image_adjust img-thumbnail">
+          <p class="text-center"><%= image_tag curiosity.image.url %></p>
+        </div>
+      <% end %> -->
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,2 @@
+module InquirersHelper
+end

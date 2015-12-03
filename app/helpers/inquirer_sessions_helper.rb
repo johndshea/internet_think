@@ -1,0 +1,2 @@
+module InquirerSessionsHelper
+end

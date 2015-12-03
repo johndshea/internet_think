@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2><span id="value"><%= @curiosity.title %></span></h2>
+  </div>
+  <div class="panel-body">
+
+    <div class="well">
+      <p><%= @curiosity.description %></p>
+      <p>
+        Tags:
+        <% @curiosity.tags.each do |tag| %>
+          <%= link_to tag.name, tag_path(tag) %>
+        <% end %>
+      </p>
+    </div>
+
+    <% if @curiosity.image.exists? %>
+      <p>You submitted: </p>
+      <div class="image_adjust">
+        <p class="text-center"><%= image_tag @curiosity.image.url %></p>
+      </div>
+    <% end %>
+
+    <p>Giphy thinks this: (brace yourself!)</p>
+    <div class="api" id="giphy">Giphy Content Loading...</div>
+
+    <p>What about Flickr?</p>
+    <div class="api" id="flickr">Flickr Content Loading...</div>
+
+    <p>What about Google Images?</p>
+    <div class="api" id="google_images">Google Images Content Loading...</div>
+
+    <% if logged_in? %>
+      <%= link_to "edit", edit_curiosity_path(@curiosity), class:"btn btn-primary" %>
+      <%= link_to "delete", curiosity_path(@curiosity), class:"btn btn-primary",
+          method: :delete, data: {confirm: "Really delete the article?"} %> <br />
+    <% end %>
+
+  </div>
+</div>
+
+<%= render partial: 'comments/form' %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>Comments (<%= @curiosity.comments.size %>)</h3>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'curiosities/comment', collection: @curiosity.comments %>
+  </div>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<%= javascript_include_tag 'api' %>

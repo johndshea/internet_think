@@ -1,0 +1,7 @@
+<h1>Curiosities Tagged with <%= @tag.name %></h1>
+
+<ul>
+  <% @tag.curiosities.each do |curiosity| %>
+    <li><%= link_to curiosity.title, curiosity_path(curiosity) %></li>
+  <% end %>
+</ul>
